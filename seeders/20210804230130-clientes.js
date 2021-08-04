@@ -12,13 +12,15 @@ module.exports = {
      * }], {});
     */
     for (let i = 0; i <10; i++) {
-        await queryInterface.bulkInsert('Productos', [{
-            nombre: 'Producto '+i,
-            cantidad: 10+i,
-            createdAt: new Date(),
-            updatedAt: new Date()
-        }], {});
-     }
+      await queryInterface.bulkInsert('Clientes', [{
+          nombre: 'Nombre cliente '+i,
+          apellido: 'Apellido cliente '+i,
+          estado: true,
+          fechaNacimiento: new Date(),
+          createdAt: new Date(),
+          updatedAt: new Date()
+      }], {});
+   }
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -28,6 +30,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Productos', null, {});
+     await queryInterface.bulkDelete('Clientes', null, {});
   }
 };
