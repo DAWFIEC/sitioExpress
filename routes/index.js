@@ -4,6 +4,7 @@ var router = express.Router();
 const Sequelize     = require('sequelize');
 const Producto       = require('../models').producto;
 const Cliente       = require('../models').cliente;
+const Ordenes       = require('../models').ordenes;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -33,6 +34,19 @@ router.get('/clientes', function(req, res, next) {
     })
     .catch(error => res.status(400).send(error))
 
+  
+});
+
+router.get('/ordenes', function(req, res, next) {
+
+  Ordenes.findAll({
+      include: [{ model: Cliente }],
+      attributes: { exclude: [ "updatedAt"] }
+    })
+    .then(ordenes => {
+      res.render('ordenes', { title: 'My Dashboard :: Ordenes', ordenes: ordenes });
+    })
+    .catch(error => res.status(400).send(error))
   
 });
 
