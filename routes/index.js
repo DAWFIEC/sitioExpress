@@ -50,4 +50,10 @@ router.get('/ordenes', function(req, res, next) {
   
 });
 
+router.get('/reporte', function(req, res, next) {
+
+  res.render('reporte', { title: 'My Dashboard :: Reporte' });
+  
+});
+
 module.exports = router;
