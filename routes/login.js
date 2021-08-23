@@ -6,22 +6,26 @@ let bd = {
   'contrasenia': '123'
 }
 
-/* GET users listing. */
 router.get('/', function(req, res, next) {
   res.render('login', { title: 'Login' });
+});
+
+router.get('/out', function(req, res, next) {
+
+
+  res.redirect('/login')
 });
 
 router.post('/validate', function(req, res, next) {
   let usuario = req.body.user;
   let contrasenia = req.body.password;
 
-  console.log("usuario: ", usuario)
-  console.log("contraseña: ", contrasenia)
-
   //Validación
   if(usuario == bd['usuario'] && contrasenia == bd['contrasenia']) {
+
     res.redirect('/');
   } else {
+
     res.redirect('/login')
   }
 
@@ -30,9 +34,6 @@ router.post('/validate', function(req, res, next) {
 router.get('/validate', function(req, res, next) {
   let usuario = req.query.user;
   let contrasenia = req.query.password;
-
-  console.log("usuario: ", usuario)
-  console.log("contraseña: ", contrasenia)
 
   //Validación
   if(usuario == bd['usuario'] && contrasenia == bd['contrasenia']) {
